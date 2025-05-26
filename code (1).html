@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Affiliate Marketing Products</title>
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fefefe;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  /* Hero Section */
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  header h1 {
+    font-weight: 900;
+    font-size: 2.8rem;
+    margin-bottom: 0.3em;
+    color: #4a90e2;
+  }
+  header p {
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Product Grid */
+  #product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .product-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.15);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+  }
+  .product-card:hover {
+    box-shadow: 0 6px 16px rgba(74, 144, 226, 0.3);
+  }
+  .product-image {
+    width: 100%;
+    height: 160px;
+    background-color: #d9e8ff;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7a9bdc;
+    font-size: 1.2rem;
+    user-select: none;
+    overflow: hidden;
+  }
+  .product-image img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+  }
+  .product-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.3em;
+    color: #2a4d8f;
+  }
+  .product-description {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1.2em;
+  }
+  .affiliate-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.25s ease;
+  }
+  .affiliate-button:hover,
+  .affiliate-button:focus {
+    background-color: #2e66c6;
+  }
+
+  /* Admin Section */
+  #admin-section {
+    background: #e7f0ff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+  #admin-section h2 {
+    color: #2a4d8f;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  #product-form {
+    display: flex;
+    flex-direction: column;
+  }
+  #product-form label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #2a4d8f;
+  }
+  #product-form input[type="text"],
+  #product-form textarea {
+    padding: 8px 10px;
+    border: 1.5px solid #9bbbee;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  #product-form input[type="text"]:focus,
+  #product-form textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+  }
+  #product-form button {
+    align-self: center;
+    background-color: #4a90e2;
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.25s ease;
+    user-select: none;
+  }
+  #product-form button:hover,
+  #product-form button:focus {
+    background-color: #2e66c6;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    #product-grid {
+      grid-template-columns: 1fr;
+    }
+    #admin-section {
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Top Affiliate Products</h1>
+    <p>Discover the best affiliate products carefully selected to boost your earnings effortlessly.</p>
+  </header>
+
+  <section id="product-grid" aria-live="polite" aria-label="Affiliate products">
+    <!-- Product cards will be injected here dynamically -->
+  </section>
+
+  <section id="admin-section" aria-label="Admin section to add or update products">
+    <h2>Add / Update Product</h2>
+    <form id="product-form" aria-describedby="form-instructions">
+      <div id="form-instructions" style="margin-bottom:12px; font-size:0.9rem; color:#444;">
+        Fill out the product info and click "Add / Update". For updating, use the exact product name.
+      </div>
+      <label for="product-name">Product Name *</label>
+      <input type="text" id="product-name" name="product-name" placeholder="Enter product name" required autocomplete="off" />
+
+      <label for="product-description">Short Description *</label>
+      <textarea id="product-description" name="product-description" rows="2" placeholder="Enter short description" required></textarea>
+
+      <label for="product-image-url">Image URL</label>
+      <input type="text" id="product-image-url" name="product-image-url" placeholder="Enter image URL (optional)" autocomplete="off"/>
+
+      <label for="affiliate-link">Affiliate Link *</label>
+      <input type="text" id="affiliate-link" name="affiliate-link" placeholder="Enter affiliate URL" required autocomplete="off" />
+
+      <button type="submit" aria-label="Add or update the product">Add / Update Product</button>
+    </form>
+  </section>
+</div>
+
+<script>
+  (() => {
+    // Initial product data as an array of objects
+    let products = [
+      {
+        name: "Wireless Earbuds",
+        description: "High-quality sound with noise cancellation tech.",
+        imageUrl: "",
+        affiliateLink: "https://affiliate.example.com/product/earbuds"
+      },
+      {
+        name: "Smartwatch Pro",
+        description: "Track your fitness, notifications & more.",
+        imageUrl: "",
+        affiliateLink: "https://affiliate.example.com/product/smartwatch"
+      },
+      {
+        name: "Portable Charger",
+        description: "Charge your devices quickly on-the-go.",
+        imageUrl: "",
+        affiliateLink: "https://affiliate.example.com/product/charger"
+      }
+    ];
+
+    const productGridElem = document.getElementById('product-grid');
+    const formElem = document.getElementById('product-form');
+
+    // Function to create a single product card DOM element
+    function createProductCard(product) {
+      const card = document.createElement('article');
+      card.className = 'product-card';
+      card.setAttribute('tabindex', '0');
+
+      const imageDiv = document.createElement('div');
+      imageDiv.className = 'product-image';
+      if (product.imageUrl && product.imageUrl.trim() !== '') {
+        const img = document.createElement('img');
+        img.src = product.imageUrl.trim();
+        img.alt = product.name + " image";
+        imageDiv.appendChild(img);
+      } else {
+        imageDiv.textContent = 'Image Placeholder';
+        imageDiv.setAttribute('aria-label', product.name + ' image placeholder');
+      }
+      card.appendChild(imageDiv);
+
+      const nameElem = document.createElement('h3');
+      nameElem.className = 'product-name';
+      nameElem.textContent = product.name;
+      card.appendChild(nameElem);
+
+      const descElem = document.createElement('p');
+      descElem.className = 'product-description';
+      descElem.textContent = product.description;
+      card.appendChild(descElem);
+
+      const linkElem = document.createElement('a');
+      linkElem.className = 'affiliate-button';
+      linkElem.href = product.affiliateLink;
+      linkElem.textContent = 'Buy Now';
+      linkElem.target = "_blank";
+      linkElem.rel = "noopener noreferrer";
+      linkElem.setAttribute('aria-label', 'Buy ' + product.name);
+      card.appendChild(linkElem);
+
+      return card;
+    }
+
+    // Function to render all products in the grid
+    function renderProducts() {
+      // Clear existing cards
+      productGridElem.innerHTML = '';
+      if (products.length === 0) {
+        const emptyMsg = document.createElement('p');
+        emptyMsg.textContent = 'No products added yet. Use the form below to add some!';
+        emptyMsg.style.textAlign = 'center';
+        emptyMsg.style.color = '#777';
+        productGridElem.appendChild(emptyMsg);
+        return;
+      }
+      // Add all cards
+      for (const product of products) {
+        productGridElem.appendChild(createProductCard(product));
+      }
+    }
+
+    // Function to handle form submission for adding/updating products
+    formElem.addEventListener('submit', event => {
+      event.preventDefault();
+      const name = formElem['product-name'].value.trim();
+      const description = formElem['product-description'].value.trim();
+      const imageUrl = formElem['product-image-url'].value.trim();
+      const affiliateLink = formElem['affiliate-link'].value.trim();
+
+      if (!name || !description || !affiliateLink) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      // Check if product with this name already exists (case insensitive)
+      const existingIndex = products.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
+
+      if (existingIndex >= 0) {
+        // Update existing product
+        products[existingIndex] = { name, description, imageUrl, affiliateLink };
+        alert(`Product "${name}" updated successfully.`);
+      } else {
+        // Add new product
+        products.push({ name, description, imageUrl, affiliateLink });
+        alert(`Product "${name}" added successfully.`);
+      }
+
+      // Clear form
+      formElem.reset();
+      // Re-render products
+      renderProducts();
+    });
+
+    // Initial render
+    renderProducts();
+  })();
+</script>
+
+</body>
+</html>
+
